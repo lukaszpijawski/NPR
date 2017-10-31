@@ -1,9 +1,12 @@
 ## ui.R ##
-fluidPage(
+library(shiny)
+ui<-fluidPage(
   sidebarLayout(
     sidebarPanel(
-      sliderInput("obs", "Number of observations:", min = 10, max = 500, value = 100)
     ),
-    mainPanel(plotOutput("distPlot"))
+    mainPanel(
+      sliderInput("bins", "Number of observations:", min = 1, max = 500, value = 100)
+      plotOutput(outputId = "distPlot")
+  )
   )
 )
