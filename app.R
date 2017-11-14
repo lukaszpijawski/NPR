@@ -2,7 +2,7 @@ library(shiny)
 
 # Define UI ----
 ui <- fluidPage(
-  titlePanel("Basic widgets"),
+  titlePanel("CensusVis"),
   
   fluidRow(
     
