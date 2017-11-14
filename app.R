@@ -4,13 +4,14 @@ library(shiny)
 ui <- fluidPage(
 
   
-  titlePanel("CensusVis"),
+  titlePanel("Title Panel"),
   
   sidebarPanel(
     h1("Side Panel")
   ),
   
   mainPanel(
+    h3("Zaczyna się main Panel"),
   fluidRow(
     
     column(3,
