@@ -2,8 +2,15 @@ library(shiny)
 
 # Define UI ----
 ui <- fluidPage(
+
+  
   titlePanel("CensusVis"),
   
+  sidebarPanel(
+    h1("Side Panel")
+  ),
+  
+  mainPanel(
   fluidRow(
     
     column(3,
@@ -75,6 +82,7 @@ ui <- fluidPage(
                      value = "Enter text..."))   
   )
   
+)
 )
 
 # Define server logic ----
