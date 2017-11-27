@@ -14,6 +14,8 @@ ui <- fluidPage(
    
    # Application title
    titlePanel("Old Faithful Geyser Data"),
+   textInput("text", h3("Text input"), 
+             value = str),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
@@ -25,6 +27,8 @@ ui <- fluidPage(
                      value = 30)
       ),
       
+      
+      
       # Show a plot of the generated distribution
       mainPanel(
          plotOutput("distPlot")
@@ -35,6 +39,11 @@ ui <- fluidPage(
 # Define server logic required to draw a histogram
 server <- function(input, output) {
    
+  myData = read.csv("data/2010.csv")
+  str = myData$Marzec[2]  #dostęp do jednego wiersza
+  
+  
+  
    output$distPlot <- renderPlot({
       # generate bins based on input$bins from ui.R
       x    <- faithful[, 2] 
