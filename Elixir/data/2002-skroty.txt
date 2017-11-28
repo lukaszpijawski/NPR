@@ -1,0 +1,14 @@
+L_MB
+L_KDPW
+L_NBP
+L_razem
+
+W_MB
+W_KDPW
+W_NBP
+W_razem
+
+S_MB
+S_KDPW
+S_NBP
+S_razem
