@@ -44,7 +44,7 @@ server <- function(input, output) {
                  "W_MB","W_MB_LORO","W_MB_kraj", "W_KDPW", "W_NBP","W_NBP_LORO","W_NBP_kraj", "W_razem",
                  "S_MB","S_MB_LORO","S_MB_kraj", "S_KDPW", "S_NBP","S_NBP_LORO","S_NBP_kraj", "S_razem")
   
-  ListOfYears <- c(read.csv("data/1999.csv",row.names = row_99_02),
+  ListOfYears <- list(read.csv("data/1999.csv",row.names = row_99_02),
                   read.csv("data/2000.csv",row.names = row_99_02),
                   read.csv("data/2001.csv",row.names = row_99_02),
                   read.csv("data/2002.csv",row.names = row_99_02),
@@ -64,7 +64,7 @@ server <- function(input, output) {
                   read.csv("data/2016.csv",row.names = row_13_17),
                   read.csv("data/2017.csv",row.names = row_13_17))
   
-  print(class(ListOfYears))
+  print(ListOfYears[[2]]["S_MB",]$Średnia)
   
   
   
