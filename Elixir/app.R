@@ -40,7 +40,7 @@ ui <- fluidPage(
 server <- function(input, output) {
    
   myData = read.csv("data/2010.csv")
-  str = myData$Marzec[2]  #dostęp do jednego wiersza
+  str = myData$Marzec[2,]  #dostęp do jednego wiersza
   
   
   
