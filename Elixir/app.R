@@ -82,6 +82,8 @@ server <- function(input, output) {
       row3 <- as.numeric(year[3,])
       row4 <- as.numeric(year[4,])
       
+      l <- c(row1, row2, row3, row4)
+      
       data <- data.frame(cols, row1, row2, row3, row4)
       data$cols <- factor(data$cols, levels = data[["cols"]])
       
