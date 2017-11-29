@@ -2,6 +2,7 @@
 #A
 
 library(shiny)
+library(plotly)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -23,7 +24,7 @@ ui <- fluidPage(
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         plotlyOutput("distPlot")
       )
    )
 )
@@ -44,7 +45,7 @@ server <- function(input, output) {
                  "W_MB","W_MB_LORO","W_MB_kraj", "W_KDPW", "W_NBP","W_NBP_LORO","W_NBP_kraj", "W_razem",
                  "S_MB","S_MB_LORO","S_MB_kraj", "S_KDPW", "S_NBP","S_NBP_LORO","S_NBP_kraj", "S_razem")
   
-  ListOfYears <- c(read.csv("data/1999.csv",row.names = row_99_02),
+  ListOfYears <- list(read.csv("data/1999.csv",row.names = row_99_02),
                   read.csv("data/2000.csv",row.names = row_99_02),
                   read.csv("data/2001.csv",row.names = row_99_02),
                   read.csv("data/2002.csv",row.names = row_99_02),
@@ -64,18 +65,39 @@ server <- function(input, output) {
                   read.csv("data/2016.csv",row.names = row_13_17),
                   read.csv("data/2017.csv",row.names = row_13_17))
   
-  print(class(ListOfYears))
+  #print(ListOfYears[[10]]$Luty)
+  #print(ListOfYears[[5]][1,])
+  #print(ListOfYears[[5]][2,])
   
   
-  
-  
-   output$distPlot <- renderPlot({
+   output$distPlot <- renderPlotly({
       # generate bins based on input$bins from ui.R
-      x    <- faithful[, 2] 
-      bins <- seq(min(x), max(x), length.out = input$bins + 1)
+     
+      year =  ListOfYears[[19]]
+     
+      cols <- colnames(year)
+      rows <- rownames(year)
+      row1 <- as.numeric(year[1,])
+      row2 <- as.numeric(year[2,])
+      row3 <- as.numeric(year[3,])
+      row4 <- as.numeric(year[4,])
       
+      data <- data.frame(cols, row1, row2, row3, row4)
+      data$cols <- factor(data$cols, levels = data[["cols"]])
+      
+      plot_ly(data, x = ~cols, y = row1, name = rows[1], type = 'bar') %>%
+        add_trace(y = ~row2, name = rows[2]) %>%
+        add_trace(y = ~row3, name = rows[3]) %>%
+        add_trace(y = ~row4, name = rows[4]) %>%
+        layout(xaxis = list(title = "", tickangle = -45),
+               yaxis = list(title = ""),
+               margin = list(b = 100),
+               barmode = 'group')
+          
       # draw the histogram with the specified number of bins
-      hist(x, breaks = bins, col = 'darkgray', border = 'white')
+      #hist(x, bins, col = 'darkgray', border = 'white')
+      #barplot(bins, main = "Wartości", xlab = "Miesiące", col=c("darkblue","red"), legend.text = rows, beside=TRUE)
+
    })
 }
 
