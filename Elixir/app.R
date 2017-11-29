@@ -2,6 +2,7 @@
 #A
 
 library(shiny)
+library(plotly)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -23,7 +24,7 @@ ui <- fluidPage(
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         plotlyOutput("distPlot")
       )
    )
 )
@@ -64,12 +65,12 @@ server <- function(input, output) {
                   read.csv("data/2016.csv",row.names = row_13_17),
                   read.csv("data/2017.csv",row.names = row_13_17))
   
-  print(ListOfYears[[2]]["S_MB",]$Średnia)
+  #print(ListOfYears[[2]]["S_MB",]$Średnia)
   
-  print(ListOfYears[2])
-  print(as.numeric(ListOfYears[[2]][1:12][12,]))
-  print(as.numeric(ListOfYears[[2]][1:12]["S_razem",]))
-  print(colnames(ListOfYears[[2]]))
+  #print(ListOfYears[2])
+  #print(as.numeric(ListOfYears[[2]][1:12][12,]))
+  #print(as.numeric(ListOfYears[[2]][1:12]["S_razem",]))
+  #print(colnames(ListOfYears[[2]]))
   
    output$distPlot <- renderPlotly({
       # generate bins based on input$bins from ui.R
@@ -78,26 +79,33 @@ server <- function(input, output) {
      
       cols <- colnames(year)
       rows <- rownames(year)
-      row1 <- as.numeric(year[1,])
-      row2 <- as.numeric(year[2,])
-      row3 <- as.numeric(year[3,])
-      row4 <- as.numeric(year[4,])
       
-      l <- c(row1, row2, row3, row4)
+      dataList = list()
+      index = 1
+      for (row in rows)
+      {
+        dataList[[index]] = as.numeric(year[row,])
+        index = index + 1
+      }
       
-      data <- data.frame(cols, row1, row2, row3, row4)
+      data <- data.frame(cols, dataList)
+      
       data$cols <- factor(data$cols, levels = data[["cols"]])
+        
+      p <- plot_ly(data, x = ~cols) %>%
+        layout(xaxis = list(title = "Miesiące", tickangle = -45),
+             yaxis = list(title = ""),
+             margin = list(b = 100),
+             barmode = 'group')
+      index <- 1
+      for (row in rows)
+      {
+        p <- add_trace(p = p, y = dataList[[index]], name = row, type = 'bar')
+        index <- index + 1
+      }
+      print(p)
       
-      plot_ly(data, x = ~cols, y = row1, name = rows[1], type = 'bar') %>%
-        add_trace(y = ~row2, name = rows[2]) %>%
-        add_trace(y = ~row3, name = rows[3]) %>%
-        add_trace(y = ~row4, name = rows[4]) %>%
-        layout(xaxis = list(title = "", tickangle = -45),
-               yaxis = list(title = ""),
-               margin = list(b = 100),
-               barmode = 'group')
-          
-      # draw the histogram with the specified number of bins
+        # draw the histogram with the specified number of bins
       #hist(x, bins, col = 'darkgray', border = 'white')
       #barplot(bins, main = "Wartości", xlab = "Miesiące", col=c("darkblue","red"), legend.text = rows, beside=TRUE)
 
