@@ -2,7 +2,6 @@
 #A
 
 library(shiny)
-library(plotly)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -24,7 +23,7 @@ ui <- fluidPage(
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotlyOutput("distPlot")
+         plotOutput("distPlot")
       )
    )
 )
@@ -65,10 +64,12 @@ server <- function(input, output) {
                   read.csv("data/2016.csv",row.names = row_13_17),
                   read.csv("data/2017.csv",row.names = row_13_17))
   
-  #print(ListOfYears[[10]]$Luty)
-  #print(ListOfYears[[5]][1,])
-  #print(ListOfYears[[5]][2,])
+  print(ListOfYears[[2]]["S_MB",]$Średnia)
   
+  print(ListOfYears[2])
+  print(as.numeric(ListOfYears[[2]][1:12][12,]))
+  print(as.numeric(ListOfYears[[2]][1:12]["S_razem",]))
+  print(colnames(ListOfYears[[2]]))
   
    output$distPlot <- renderPlotly({
       # generate bins based on input$bins from ui.R
