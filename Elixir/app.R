@@ -2,6 +2,7 @@
 #A
 
 library(shiny)
+library(plotly)
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
@@ -23,7 +24,7 @@ ui <- fluidPage(
       
       # Show a plot of the generated distribution
       mainPanel(
-         plotOutput("distPlot")
+         plotlyOutput("distPlot")
       )
    )
 )
