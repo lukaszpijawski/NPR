@@ -8,16 +8,16 @@ library(plotly)
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Old Faithful Geyser Data"),
+   titlePanel("Zlecenia klientowskie zrealizowane na rachunkach bieżących banków w NBP DSP w 2017 r."),
    
    # Sidebar with a slider input for number of bins 
    sidebarLayout(
       sidebarPanel(
          sliderInput("bins",
                      "Number of bins:",
-                     min = 1,
-                     max = 50,
-                     value = 30)
+                     min = 1999,
+                     max = 2017,
+                     value = 1999)
       ),
       
       
