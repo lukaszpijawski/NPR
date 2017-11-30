@@ -8,25 +8,14 @@ library(plotly)
 ui <- fluidPage(
    
    # Application title
-   titlePanel("Old Faithful Geyser Data"),
-   
-   # Sidebar with a slider input for number of bins 
-   sidebarLayout(
-      sidebarPanel(
-         sliderInput("bins",
-                     "Number of bins:",
-                     min = 1,
-                     max = 50,
-                     value = 30)
-      ),
-      
+   titlePanel("Analiza finansowa"),
       
       
       # Show a plot of the generated distribution
       mainPanel(
          plotlyOutput("distPlot")
       )
-   )
+   
 )
 
 # Define server logic required to draw a histogram
@@ -104,11 +93,6 @@ server <- function(input, output) {
         index <- index + 1
       }
       print(p)
-      
-        # draw the histogram with the specified number of bins
-      #hist(x, bins, col = 'darkgray', border = 'white')
-      #barplot(bins, main = "Wartości", xlab = "Miesiące", col=c("darkblue","red"), legend.text = rows, beside=TRUE)
-
    })
 }
 
