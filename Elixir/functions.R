@@ -27,6 +27,8 @@ getRows_99_02 <- function()
                  "Średnia kwota zleceń z udziałem innych klientów NBP",
                  "Średnia kwota zleceń razem"
                  )
+  
+  
   return(vec)
 }
 
@@ -83,6 +85,64 @@ getRows_13_17 <- function()
     "S_razem"
   ))
 }
+
+getLongName <- function(shortname)
+{
+  shortnames <- c(
+    "L_MB",
+    "L_MB_LORO",
+    "L_MB_kraj",
+    "L_KDPW",
+    "L_NBP",
+    "L_NBP_LORO",
+    "L_NBP_kraj",
+    "L_razem",
+    "W_MB",
+    "W_MB_LORO",
+    "W_MB_kraj",
+    "W_KDPW",
+    "W_NBP",
+    "W_NBP_LORO",
+    "W_NBP_kraj",
+    "W_razem",
+    "S_MB",
+    "S_MB_LORO",
+    "S_MB_kraj",
+    "S_KDPW",
+    "S_NBP",
+    "S_NBP_LORO",
+    "S_NBP_kraj",
+    "S_razem"
+  )
+  
+  longnames <- c("Liczba zleceń międzybankowych",
+                 "Liczba zleceń międzybankowych klientów LORO",
+                 "Liczba zleceń międzybankowych klientów krajowych",
+                 "Liczba zleceń z udziałem KDPW",
+                 "Liczba zleceń z udziałem innych klientów NBP",
+                 "Liczba zleceń z udziałem innych klientów NBP (LORO)",
+                 "Liczba zleceń z udziałem innych klientów NBP (krajowych)",
+                 "Liczba zleceń razem",
+                 "Wartość zleceń międzybankowych",
+                 "Wartość zleceń międzybankowych klientów LORO",
+                 "Wartość zleceń międzybankowych klientów krajowych",
+                 "Wartość zleceń z udziałem KDPW",
+                 "Wartość zleceń z udziałem innych klientów NBP",
+                 "Wartość zleceń z udziałem innych klientów NBP (LORO)",
+                 "Wartość zleceń z udziałem innych klientów NBP (krajowych)",
+                 "Wartość zleceń razem",
+                 "Średnia kwota zlecenia międzybankowego",
+                 "Średnia kwota zlecenia międzybankowego klientów LORO",
+                 "Średnia kwota zlecenia międzybankowego klientów krajowych",
+                 "Średnia kwota zlecenia z udziałem KDPW",
+                 "Średnia kwota zlecenia z udziałem innych klientów NBP",
+                 "Średnia kwota zlecenia z udziałem innych klientów NBP (LORO)",
+                 "Średnia kwota zlecenia z udziałem innych klientów NBP (krajowych)",
+                 "Średnia kwota zlecenia"
+  )
+}
+
+
 
 getListOfYears <- function(rows_99_02, rows_03_12, rows_13_17)
 {
