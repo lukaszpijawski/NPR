@@ -1,6 +1,6 @@
 getRows_99_02 <- function()
 {
-  return(c(
+  vec <- c(
     "L_MB",
     "L_KDPW",
     "L_NBP",
@@ -13,7 +13,21 @@ getRows_99_02 <- function()
     "S_KDPW",
     "S_NBP",
     "S_razem"
-  ))
+  )
+  names(vec) = c("Liczba zleceń międzybankowych",
+                 "Liczba zleceń z udziałem KDPW",
+                 "Liczba zleceń z udziałem innych klientów NBP",
+                 "Liczba zleceń razem",
+                 "Wartość zleceń międzybankowych",
+                 "Wartość zleceń z udziałem KDPW",
+                 "Wartość zleceń z udziałem innych klientów NBP",
+                 "Wartość zleceń razem",
+                 "Średnia kwota zleceń międzybankowych",
+                 "Średnia kwota zleceń z udziałem KDPW",
+                 "Średnia kwota zleceń z udziałem innych klientów NBP",
+                 "Średnia kwota zleceń razem"
+                 )
+  return(vec)
 }
 
 getRows_03_12 <- function()
@@ -102,8 +116,8 @@ createPlot <- function(yearInNumber, orderTypesCheckboxes, ListOfYears)
   year = ListOfYears[[yearInNumber - 1998]]
   
   cols <- colnames(year)
-  rows <- orderTypesCheckboxes$choiceNames#rownames(year)
-  print(orderTypesCheckboxes)
+  rows <- orderTypesCheckboxes#rownames(year)
+  
   
   dataList = list()
   index = 1
@@ -145,8 +159,7 @@ createPlot <- function(yearInNumber, orderTypesCheckboxes, ListOfYears)
           p = p,
           y = dataList[[index]],
           name = row,
-          type = 'bar',
-          visible = "legendonly"
+          type = 'bar'
         )
     }
     index <- index + 1

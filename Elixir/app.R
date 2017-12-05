@@ -19,9 +19,15 @@ server <- function(input, output)
   output$orderTypes <- renderUI({
     year = ListOfYears[[input$inputYear - 1998]]
     rows <- rownames(year)
-    checkboxGroupInput(inputId = "orderTypesCheckboxes", label = h4("Typy zleceń"), choiceNames = rows, choiceValues = rows, selected = rows[[1]])
+    rowNames <- rownames(year)
+    for (i in 1:length(rowNames))
+    {
+      rowNames[[i]] <- paste(rowNames[[i]], "dodatek", sep="")
+    }
+    print(names(year))
+    checkboxGroupInput(inputId = "orderTypesCheckboxes", label = h4("Typy zleceń"), choiceNames = rowNames, choiceValues = rows, selected = rows[[1]])
   })
-  
+
   output$distPlot <- renderPlotly(createPlot(input$inputYear, input$orderTypesCheckboxes, ListOfYears))
 }
 
