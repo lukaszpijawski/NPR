@@ -70,7 +70,7 @@ getRows_13_17 <- function()
   ))
 }
 
-getLongName <- function(shortname)
+getLongNames <- function(input_shortnames)
 {
   shortnames <- c(
     "L_MB",
@@ -99,34 +99,43 @@ getLongName <- function(shortname)
     "S_razem"
   )
   
-  longnames <- c("Liczba zleceń międzybankowych",
-                 "Liczba zleceń międzybankowych klientów LORO",
-                 "Liczba zleceń międzybankowych klientów krajowych",
-                 "Liczba zleceń z udziałem KDPW",
-                 "Liczba zleceń z udziałem innych klientów NBP",
-                 "Liczba zleceń z udziałem innych klientów NBP (LORO)",
-                 "Liczba zleceń z udziałem innych klientów NBP (krajowych)",
-                 "Liczba zleceń razem",
-                 "Wartość zleceń międzybankowych",
-                 "Wartość zleceń międzybankowych klientów LORO",
-                 "Wartość zleceń międzybankowych klientów krajowych",
-                 "Wartość zleceń z udziałem KDPW",
-                 "Wartość zleceń z udziałem innych klientów NBP",
-                 "Wartość zleceń z udziałem innych klientów NBP (LORO)",
-                 "Wartość zleceń z udziałem innych klientów NBP (krajowych)",
-                 "Wartość zleceń razem",
-                 "Średnia kwota zlecenia międzybankowego",
-                 "Średnia kwota zlecenia międzybankowego klientów LORO",
-                 "Średnia kwota zlecenia międzybankowego klientów krajowych",
-                 "Średnia kwota zlecenia z udziałem KDPW",
-                 "Średnia kwota zlecenia z udziałem innych klientów NBP",
-                 "Średnia kwota zlecenia z udziałem innych klientów NBP (LORO)",
-                 "Średnia kwota zlecenia z udziałem innych klientów NBP (krajowych)",
-                 "Średnia kwota zlecenia"
+  longnames <- c("Liczba zleceń międzybankowych [L_MB]",
+                 "Liczba zleceń międzybankowych klientów LORO [L_MB_LORO]",
+                 "Liczba zleceń międzybankowych klientów krajowych [L_MB_kraj]",
+                 "Liczba zleceń z udziałem KDPW [L_KDPW]",
+                 "Liczba zleceń z udziałem innych klientów NBP [L_NBP]",
+                 "Liczba zleceń z udziałem innych klientów NBP (LORO) [L_NBP_LORO]",
+                 "Liczba zleceń z udziałem innych klientów NBP (krajowych) [L_NBP_kraj]",
+                 "Liczba zleceń razem [L_razem]",
+                 "Wartość zleceń międzybankowych [W_MB]",
+                 "Wartość zleceń międzybankowych klientów LORO [W_MB_LORO]",
+                 "Wartość zleceń międzybankowych klientów krajowych [W_MB_kraj]",
+                 "Wartość zleceń z udziałem KDPW [W_KDPW]",
+                 "Wartość zleceń z udziałem innych klientów NBP [W_NBP]",
+                 "Wartość zleceń z udziałem innych klientów NBP (LORO) [W_NBP_LORO]",
+                 "Wartość zleceń z udziałem innych klientów NBP (krajowych) [W_NBP_kraj]",
+                 "Wartość zleceń razem [W_razem]",
+                 "Średnia kwota zlecenia międzybankowego [S_MB]",
+                 "Średnia kwota zlecenia międzybankowego klientów LORO [S_MB_LORO]",
+                 "Średnia kwota zlecenia międzybankowego klientów krajowych [S_MB_kraj]",
+                 "Średnia kwota zlecenia z udziałem KDPW [S_KDPW]",
+                 "Średnia kwota zlecenia z udziałem innych klientów NBP [S_NBP]",
+                 "Średnia kwota zlecenia z udziałem innych klientów NBP (LORO) [S_NBP_LORO]",
+                 "Średnia kwota zlecenia z udziałem innych klientów NBP (krajowych) [S_NBP_kraj]",
+                 "Średnia kwota zlecenia [S_razem]"
   )
   
-  index <- match(shortname, shortnames)
-  return (longnames[[index]])
+  output_longnames <- c() 
+  outside_index<-1 
+  for (inside_index in 1:length(shortnames))
+  {
+    if (input_shortnames[[outside_index]] == shortnames[[inside_index]])
+    {
+      output_longnames[[outside_index]] <- longnames[[inside_index]]  
+      outside_index <- outside_index+1
+    }
+  }
+  return (output_longnames)
 }
 
 
