@@ -140,6 +140,9 @@ getLongName <- function(shortname)
                  "Średnia kwota zlecenia z udziałem innych klientów NBP (krajowych)",
                  "Średnia kwota zlecenia"
   )
+  
+  index <- match(shortname, shortnames)
+  return (longnames[[index]])
 }
 
 
