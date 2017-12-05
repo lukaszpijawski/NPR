@@ -1,6 +1,6 @@
 getRows_99_02 <- function()
 {
-  vec <- c(
+  return (c(
     "L_MB",
     "L_KDPW",
     "L_NBP",
@@ -13,23 +13,7 @@ getRows_99_02 <- function()
     "S_KDPW",
     "S_NBP",
     "S_razem"
-  )
-  names(vec) = c("Liczba zleceń międzybankowych",
-                 "Liczba zleceń z udziałem KDPW",
-                 "Liczba zleceń z udziałem innych klientów NBP",
-                 "Liczba zleceń razem",
-                 "Wartość zleceń międzybankowych",
-                 "Wartość zleceń z udziałem KDPW",
-                 "Wartość zleceń z udziałem innych klientów NBP",
-                 "Wartość zleceń razem",
-                 "Średnia kwota zleceń międzybankowych",
-                 "Średnia kwota zleceń z udziałem KDPW",
-                 "Średnia kwota zleceń z udziałem innych klientów NBP",
-                 "Średnia kwota zleceń razem"
-                 )
-  
-  
-  return(vec)
+  ))
 }
 
 getRows_03_12 <- function()
