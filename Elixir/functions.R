@@ -170,8 +170,23 @@ getListOfYears <- function(rows_99_02, rows_03_12, rows_13_17)
 createPlot <- function(yearInNumber, orderTypesCheckboxes, ListOfYears)
 {
   year = ListOfYears[[yearInNumber - 1998]]
-  
   cols <- colnames(year)
+  
+  if (is.null(orderTypesCheckboxes))
+  {
+    data <- data.frame(cols)
+    data$cols <- factor(data$cols, levels = data[["cols"]])
+    
+    return(plot_ly(data, x = ~ cols, y = 0) %>%
+             layout(
+               title = yearInNumber,
+               xaxis = list(title = "Miesiące", tickangle = -45),
+               yaxis = list(title = ""),
+               margin = list(b = 100),
+               barmode = 'group'
+             ))
+  }
+  
   rows <- orderTypesCheckboxes#rownames(year)
   
   
