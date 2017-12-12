@@ -275,7 +275,7 @@ createLinePlot <-
            ListOfYears)
   {
     year = ListOfYears[[yearInNumber - 1998]]
-    cols <- colnames(year)
+    cols <- getYears()
     
     if (is.null(orderTypesCheckboxes))
     {
@@ -291,7 +291,7 @@ createLinePlot <-
           type = 'scatter'
         ) %>%
           layout(
-            title = yearInNumber,
+            title = "Zestawienie wspólne",
             xaxis = list(title = "Rok", tickangle = -45),
             yaxis = list(title = ""),
             margin = list(b = 100)
