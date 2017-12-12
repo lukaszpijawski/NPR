@@ -4,7 +4,7 @@ createUI <- function()
             #actionButton("Uncheck", label="Odznacz"),
             titlePanel(
               h3(
-                "Zlecenia klientowskie zrealizowane na rachunkach bieżących banków w NBP DSP w 2017 r."
+                "Zlecenia klientowskie zrealizowane na rachunkach bieżących banków w NBP DSP."
               )
             ),
             
