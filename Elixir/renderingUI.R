@@ -32,7 +32,15 @@ createUI <- function()
                 column(8,
                        plotlyOutput("distPlot"))
               ))
-            )))
+            ),
+            tabPanel(
+              "Zestawienie wspólne",
+              fluidPage(fluidRow(
+                column(4,uiOutput(outputId = "orderTypes_2")),
+                column(8,plotlyOutput("distPlot_2"))
+              ))
+              )
+            ))
 }
 
 createCheckboxes <- function(yearInNumber, ListOfYears)
