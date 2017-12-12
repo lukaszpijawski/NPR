@@ -34,7 +34,7 @@ server <- function(input, output)
     year = ListOfYears[[input$inputYear - 1998]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
-    checkboxGroupInput(inputId = "orderTypesCheckboxes_2", label = h4("Typy zleceń"), choiceNames = rowNames, choiceValues = rows,selected = input$orderTypesCheckboxes)
+    checkboxGroupInput(inputId = "orderTypesCheckboxes_2", label = h4("Typy zleceń"), choiceNames = rowNames, choiceValues = rows,selected = input$orderTypesCheckboxes_2)
   })
   
   output$distPlot_2 <- renderPlotly(createLinePlot(input$inputYear, input$orderTypesCheckboxes_2, ListOfYears))

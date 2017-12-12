@@ -249,13 +249,12 @@ createLinePlot <- function(yearInNumber, orderTypesCheckboxes, ListOfYears)
     data <- data.frame(cols)
     data$cols <- factor(data$cols, levels = data[["cols"]])
     
-    return(plot_ly(data, x = ~ cols, y = 0) %>%
+    return(plot_ly(data, x = ~ cols, y = 0,mode = 'lines', type = 'scatter') %>%
              layout(
                title = yearInNumber,
                xaxis = list(title = "Miesiące", tickangle = -45),
                yaxis = list(title = ""),
-               margin = list(b = 100),
-               mode = 'lines'
+               margin = list(b = 100)
              ))
   }
   
@@ -279,8 +278,7 @@ createLinePlot <- function(yearInNumber, orderTypesCheckboxes, ListOfYears)
       title = yearInNumber,
       xaxis = list(title = "Miesiące", tickangle = -45),
       yaxis = list(title = ""),
-      margin = list(b = 100),
-      mode = 'lines'
+      margin = list(b = 100)
     )
   index <- 1
   for (row in rows)
@@ -289,7 +287,9 @@ createLinePlot <- function(yearInNumber, orderTypesCheckboxes, ListOfYears)
         add_trace(
           p = p,
           y = dataList[[index]],
-          name = row
+          name = row,
+          mode = 'lines+markers',
+          type = 'scatter'
         )
     index <- index + 1
   }
