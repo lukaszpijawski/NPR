@@ -8,7 +8,7 @@ library(plotly)
 source("renderingUI.R")
 ui <- createUI()
 
-server <- function(input, output) 
+server <- function(input, output, session) 
 {
   source("functions.R")
   values <- reactiveValues(checkbox = c())
@@ -38,6 +38,22 @@ server <- function(input, output)
   })
   
   output$distPlot_2 <- renderPlotly(createLinePlot(input$inputYear, input$orderTypesCheckboxes_2, ListOfYears))
-}
+  
+  observe({
+    year = ListOfYears[[input$inputYear - 1998]]
+    rows <- rownames(year)
+    rowNames <- getLongNames(rows)
+    
+    if (input$Uncheck_1 > 0) {
+      updateCheckboxGroupInput(session=session, inputId="orderTypesCheckboxes", choiceNames = rowNames, choiceValues = rows, selected=NULL)
+    }
+    
+    if (input$Uncheck_2 > 0) {
+      updateCheckboxGroupInput(session=session, inputId="orderTypesCheckboxes_2", choiceNames = rowNames, choiceValues = rows,selected=NULL)
+    }
+  })
+  
+  
+  }
 
 shinyApp(ui = ui, server = server)
