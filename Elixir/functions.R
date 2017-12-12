@@ -76,6 +76,33 @@ getRows_13_17 <- function()
   )
 }
 
+getYears <- function()
+{
+  return(
+    c(
+      "1999",
+      "2000",
+      "2001",
+      "2002",
+      "2003",
+      "2004",
+      "2005",
+      "2006",
+      "2007",
+      "2008",
+      "2009",
+      "2010",
+      "2011",
+      "2012",
+      "2013",
+      "2014",
+      "2015",
+      "2016",
+      "2017"
+    )
+  )
+}
+
 getLongNames <- function(input_shortnames)
 {
   shortnames <- c(
@@ -176,6 +203,8 @@ getListOfYears <- function(rows_99_02, rows_03_12, rows_13_17)
 
 
 
+
+
 createBarPlot <-
   function(yearInNumber,
            orderTypesCheckboxes,
@@ -263,7 +292,7 @@ createLinePlot <-
         ) %>%
           layout(
             title = yearInNumber,
-            xaxis = list(title = "Miesiące", tickangle = -45),
+            xaxis = list(title = "Rok", tickangle = -45),
             yaxis = list(title = ""),
             margin = list(b = 100)
           )
@@ -289,7 +318,7 @@ createLinePlot <-
     p <- plot_ly(data, x = ~ cols) %>%
       layout(
         title = yearInNumber,
-        xaxis = list(title = "Miesiące", tickangle = -45),
+        xaxis = list(title = "Rok", tickangle = -45),
         yaxis = list(title = ""),
         margin = list(b = 100)
       )
