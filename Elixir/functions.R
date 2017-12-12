@@ -200,9 +200,6 @@ getListOfYears <- function(rows_99_02, rows_03_12, rows_13_17)
 }
 
 
-
-
-
 createBarPlot <-
   function(yearInNumber,
            orderTypesCheckboxes,
@@ -272,7 +269,6 @@ createLinePlot <-
            orderTypesCheckboxes,
            ListOfYears)
   {
-    #year = ListOfYears[[yearInNumber - 1998]]
     cols <- getYears()
     
     if (is.null(orderTypesCheckboxes))
@@ -297,25 +293,22 @@ createLinePlot <-
       )
     }
     
-    
     rows <- orderTypesCheckboxes
-    
-    
     dataList = list()
+    
     index = 1
     for (year in ListOfYears)
     {
-      vec = c(length(rows))
+      vec <- list(length(rows))
       rowIndex = 1
       for (row in rows)
       {
         vec[[rowIndex]] = tail(as.numeric(year[row,]), 1)
         rowIndex = rowIndex + 1
       }
-      dataList[[index]] = vec
+      dataList[[index]] <- vec
       index = index + 1
     }
-    print(dataList)
     data <- data.frame(cols, dataList)
     
     data$cols <- factor(data$cols, levels = data[["cols"]])
@@ -328,32 +321,28 @@ createLinePlot <-
         margin = list(b = 100)
       )
     
-    
-    
     index <- 1
-    #for (year in ListOfYears)
-    #{
-      #rowIndex = 1
-      for (row in rows)
+    for (row in rows)
+    {
+      listForPlot = list(length(ListOfYears))
+      yearIndex = 1
+      for (year in ListOfYears)
       {
-        listForPlot = list(length(ListOfYears))
-        yearIndex = 1
-        for (year in ListOfYears)
-        {
-          listForPlot[[yearIndex]] = dataList[[yearIndex]][index]
-          yearIndex = yearIndex + 1
-        }
-        p <-
-          add_trace(
-            p = p,
-            y = listForPlot,
-            name = row,
-            mode = 'lines+markers',
-            type = 'scatter'
-          )
-        #rowIndex = rowIndex + 1
+        
+        listForPlot[[yearIndex]] = dataList[[yearIndex]][[index]]
+        yearIndex = yearIndex + 1
       }
+      p <-
+        add_trace(
+          p = p,
+          y = listForPlot,
+          name = row,
+          mode = 'lines+markers',
+          type = 'scatter'
+        )
+      listForPlot = list()
       index <- index + 1
-    #}
+    }
+      
     print(p)
   }
