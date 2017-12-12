@@ -217,6 +217,7 @@ createBarPlot <-
         plot_ly(data, x = ~cols, y = 0) %>%
           layout(
             title = yearInNumber,
+            font = list(family = "Play"),
             xaxis = list(title = "Miesiące", tickangle = -45),
             yaxis = list(title = ""),
             margin = list(b = 100),
@@ -243,6 +244,7 @@ createBarPlot <-
     p <- plot_ly(data, x = ~ cols) %>%
       layout(
         title = yearInNumber,
+        font = list(family = "Play"),
         xaxis = list(title = "Miesiące", tickangle = -45),
         yaxis = list(title = ""),
         margin = list(b = 100),
@@ -286,6 +288,7 @@ createLinePlot <-
         ) %>%
           layout(
             title = "Zestawienie wspólne",
+            font = list(family = "Play"),
             xaxis = list(title = "Rok", tickangle = -45),
             yaxis = list(title = ""),
             margin = list(b = 100)
@@ -316,6 +319,7 @@ createLinePlot <-
     p <- plot_ly(data, x = ~ cols) %>%
       layout(
         title = "Zestawienie wspólne",
+        font = list(family = "Play"),
         xaxis = list(title = "Rok", tickangle = -45),
         yaxis = list(title = ""),
         margin = list(b = 100)

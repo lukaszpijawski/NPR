@@ -3,9 +3,7 @@ createUI <- function()
   fluidPage(includeCSS("style.css"),
             #actionButton("Uncheck", label="Odznacz"),
             titlePanel(
-              h3(
                 "Zlecenia klientowskie zrealizowane na rachunkach bieżących banków w NBP DSP."
-              )
             ),
             
             tabsetPanel(tabPanel(
@@ -48,5 +46,5 @@ createCheckboxes <- function(yearInNumber, ListOfYears)
     year = ListOfYears[[yearInNumber - 1998]]
     rows <- rownames(year)
     print(rows)
-    checkboxGroupInput(label = h4("Typy zleceń"), choices = rows)
+    checkboxGroupInput(label = h4("Typy zleceń:"), choices = rows)
 }
