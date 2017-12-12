@@ -145,8 +145,6 @@ getLongNames <- function(input_shortnames)
   return (output_longnames)
 }
 
-
-
 getListOfYears <- function(rows_99_02, rows_03_12, rows_13_17)
 {
   return(
@@ -182,7 +180,7 @@ createBarPlot <-
            ListOfYears)
   {
     year = ListOfYears[[yearInNumber - 1998]]
-    cols <- colnames(year)
+    cols <- head(colnames(year), -1)
     
     if (is.null(orderTypesCheckboxes))
     {
@@ -190,7 +188,7 @@ createBarPlot <-
       data$cols <- factor(data$cols, levels = data[["cols"]])
       
       return(
-        plot_ly(data, x = ~ cols, y = 0) %>%
+        plot_ly(data, x = ~cols, y = 0) %>%
           layout(
             title = yearInNumber,
             xaxis = list(title = "Miesiące", tickangle = -45),
@@ -208,7 +206,7 @@ createBarPlot <-
     index = 1
     for (row in rows)
     {
-      dataList[[index]] = as.numeric(year[row,])
+      dataList[[index]] = head(as.numeric(year[row,]), -1)
       index = index + 1
     }
     
