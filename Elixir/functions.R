@@ -272,7 +272,7 @@ createLinePlot <-
            orderTypesCheckboxes,
            ListOfYears)
   {
-    year = ListOfYears[[yearInNumber - 1998]]
+    #year = ListOfYears[[yearInNumber - 1998]]
     cols <- getYears()
     
     if (is.null(orderTypesCheckboxes))
@@ -303,35 +303,57 @@ createLinePlot <-
     
     dataList = list()
     index = 1
-    for (row in rows)
+    for (year in ListOfYears)
     {
-      dataList[[index]] = as.numeric(year[row,])
+      vec = c(length(rows))
+      rowIndex = 1
+      for (row in rows)
+      {
+        vec[[rowIndex]] = tail(as.numeric(year[row,]), 1)
+        rowIndex = rowIndex + 1
+      }
+      dataList[[index]] = vec
       index = index + 1
     }
-    
+    print(dataList)
     data <- data.frame(cols, dataList)
     
     data$cols <- factor(data$cols, levels = data[["cols"]])
     
     p <- plot_ly(data, x = ~ cols) %>%
       layout(
-        title = yearInNumber,
+        title = "Zestawienie wspólne",
         xaxis = list(title = "Rok", tickangle = -45),
         yaxis = list(title = ""),
         margin = list(b = 100)
       )
+    
+    
+    
     index <- 1
-    for (row in rows)
-    {
-      p <-
-        add_trace(
-          p = p,
-          y = dataList[[index]],
-          name = row,
-          mode = 'lines+markers',
-          type = 'scatter'
-        )
+    #for (year in ListOfYears)
+    #{
+      #rowIndex = 1
+      for (row in rows)
+      {
+        listForPlot = list(length(ListOfYears))
+        yearIndex = 1
+        for (year in ListOfYears)
+        {
+          listForPlot[[yearIndex]] = dataList[[yearIndex]][index]
+          yearIndex = yearIndex + 1
+        }
+        p <-
+          add_trace(
+            p = p,
+            y = listForPlot,
+            name = row,
+            mode = 'lines+markers',
+            type = 'scatter'
+          )
+        #rowIndex = rowIndex + 1
+      }
       index <- index + 1
-    }
+    #}
     print(p)
   }
