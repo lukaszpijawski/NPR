@@ -16,9 +16,6 @@ h2{
 .plot-container{
   padding-top: 2% !important;
 }
-#Uncheck_1{
-  margin-bottom: 2% !important;
-}
 .control-label > h4{
   font-weight: bolder;
   font-size:110%;
@@ -56,4 +53,11 @@ a{
 }
 a:hover{
   color:#00695f !important;
+}
+
+#Uncheck_1{
+  margin-bottom: 2% !important;
+}
+#Uncheck_2{
+  margin-bottom: 2% !important;
 }

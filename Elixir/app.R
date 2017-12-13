@@ -31,7 +31,7 @@ server <- function(input, output, session)
   ##Zestawienie wspólne##
   
   output$orderTypes_2 <- renderUI({
-    year = ListOfYears[[input$inputYear - 1998]]
+    year = ListOfYears[[19]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
     checkboxGroupInput(inputId = "orderTypesCheckboxes_2", label = h4("Typy zleceń"), choiceNames = rowNames, choiceValues = rows, selected = input$orderTypesCheckboxes_2)
