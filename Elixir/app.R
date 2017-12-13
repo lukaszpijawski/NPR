@@ -39,7 +39,7 @@ server <- function(input, output, session)
   
   output$distPlot_2 <- renderPlotly(createLinePlot(input$inputYear, input$orderTypesCheckboxes_2, ListOfYears))
   
-  observe({
+  observeEvent(input$Uncheck_1,{
     year = ListOfYears[[input$inputYear - 1998]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
@@ -49,7 +49,7 @@ server <- function(input, output, session)
     }
   })
   
-  observe({
+  observeEvent(input$Uncheck_2,{
     year = ListOfYears[[input$inputYear - 1998]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
