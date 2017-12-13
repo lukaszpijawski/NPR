@@ -40,11 +40,3 @@ createUI <- function()
               )
             ))
 }
-
-createCheckboxes <- function(yearInNumber, ListOfYears)
-{
-    year = ListOfYears[[yearInNumber - 1998]]
-    rows <- rownames(year)
-    print(rows)
-    checkboxGroupInput(label = h4("Typy zleceń:"), choices = rows)
-}
