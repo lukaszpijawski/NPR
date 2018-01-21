@@ -31,15 +31,15 @@ server <- function(input, output, session)
   ##Zestawienie wspólne##
   
   output$orderTypes_2 <- renderUI({
-    year = ListOfYears[[input$inputYear - 1998]]
+    year = ListOfYears[[19]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
-    checkboxGroupInput(inputId = "orderTypesCheckboxes_2", label = h4("Typy zleceń"), choiceNames = rowNames, choiceValues = rows, selected = input$orderTypesCheckboxes_2)
+    checkboxGroupInput(inputId = "orderTypesCheckboxes_2", label = h4("Typy zleceń:"), choiceNames = rowNames, choiceValues = rows, selected = input$orderTypesCheckboxes_2)
   })
   
   output$distPlot_2 <- renderPlotly(createLinePlot(input$inputYear, input$orderTypesCheckboxes_2, ListOfYears))
   
-  observe({
+  observeEvent(input$Uncheck_1,{
     year = ListOfYears[[input$inputYear - 1998]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
@@ -49,7 +49,7 @@ server <- function(input, output, session)
     }
   })
   
-  observe({
+  observeEvent(input$Uncheck_2,{
     year = ListOfYears[[input$inputYear - 1998]]
     rows <- rownames(year)
     rowNames <- getLongNames(rows)
